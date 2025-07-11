@@ -1,0 +1,53 @@
+{
+  "fileurl": "https://firstconnect-backend-staging.s3.amazonaws.com/producers/FC04483/NextInsurance1605%20%281%29.pdf",
+  "fileName": "NextInsurance1605 (1).pdf",
+  "enoVerifiedBy": 1,
+  "enoVerifiedOn": "06/12/2025",
+  "individualNPN": "9208615",
+  "npnVerifiedBy": 1,
+  "npnVerifiedOn": "06/12/2025",
+  "aggregateLimit": "3000000",
+  "expirationDate": "10/15/2025",
+  "individualName": "Sappenfield,Valarie",
+  "otherStateLicenses": {
+    "licenseData": [
+      {
+        "loa": "Property & Casualty",
+        "npn": "9208615",
+        "uuid": "1444003-TX-108-465",
+        "state": "TX",
+        "active": true,
+        "source": "snapshot",
+        "status": "Active",
+        "loaCode": "108",
+        "metadata": {
+          "source": "agentsync",
+          "last_nipr_alert_update": "2025-05-15T04:47:06.602117",
+          "last_nipr_entity_update": "2024-09-26T16:57:14.739616"
+        },
+        "isPrimary": true,
+        "issueDate": "2007-05-07",
+        "licenseId": "3858830",
+        "updatedAt": "2025-05-15",
+        "updatedOn": "2025-06-19T06:36:00.173Z",
+        "agentTypes": [
+          "Producer"
+        ],
+        "expiryDate": "06/30/2023",
+        "licenseType": "INDIVIDUAL",
+        "niprDeleted": false,
+        "licenseClass": "General Lines Agncy/Agnt",
+        "licenseNumber": "1444003",
+        "niprDateUpdated": "2025-05-14",
+        "residencyStatus": "R",
+        "licenseClassCode": "465",
+        "statusReasonDate": "2007-05-07",
+        "originalIssueDate": "2007-05-07"
+      }
+    ]
+  },
+  "individualDateOfBirth": "1981-06-07",
+  "isIndividualNPNVerified": true,
+  "isIndividualNPNenteredManually": false,
+  "isIndividualNameVerifiedByAgentSync": false
+}
