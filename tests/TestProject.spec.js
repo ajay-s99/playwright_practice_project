@@ -22,7 +22,7 @@ test('Visit', async ({page}) =>{
      await expect(heading).toBeVisible();
      //validate heading text
      await expect(heading).toHaveText('Enter Account Information');
-
+    const titleField = page.getByRole('heading', {name: 'Title'})
     //await page.pause();     
 }); 
  

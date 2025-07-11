@@ -43,6 +43,6 @@ test.only ('Test Automation', async ({ page }) => {
     await expect(page).toHaveURL('https://www.automationexercise.com/account_created');
     await page.getByRole('link', { name: ' Men' }).click();
     await page.getByRole('link', { name: 'Tshirts' }).click();
-    await page.pause()
-    
+    //await page.pause()
+
 })
