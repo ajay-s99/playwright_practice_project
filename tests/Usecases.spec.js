@@ -18,11 +18,11 @@ test('@Web Client App login', async ({ page }) => {
 test.only ('Test Automation', async ({ page }) => {
     await page.goto("https://www.automationexercise.com/login");
     await page.locator("[name='name']").fill('ajjuz')
-    await page.locator("[data-qa='signup-email']").fill('Ajju@yopmail.com')
+    await page.locator("[data-qa='signup-email']").fill('Ajjuzxzxzz@yopmail.com')
     await page.locator("[data-qa='signup-button']").click()
     await page.locator("[type='radio']").first().click()
     console.log(await page.locator("[type='radio']").first().isChecked())
-    await page.locator("[type='password']").fill("Ajju@123")
+    await page.locator("[type='password']").fill("Ajjuz@123")
     // await page.locator('label',{hasText: 'Receive special offers from our partners!'})
     // .locator("[type='checkbox']").click()
     await page.getByLabel('Receive special offers from our partners!').check()
@@ -40,9 +40,43 @@ test.only ('Test Automation', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Mobile Number *' }).fill('44878728787');   
     await page.getByRole('button', { name: 'Create Account' }).click();
     await page.getByRole('link', { name: 'Continue' }).click();
-    await expect(page).toHaveURL('https://www.automationexercise.com/account_created');
-    await page.getByRole('link', { name: ' Men' }).click();
-    await page.getByRole('link', { name: 'Tshirts' }).click();
+    //await expect(page).toHaveURL('https://www.automationexercise.com/account_created');
+
+    // adding a dynamic product into the cart
+    const productToBuy = 'Winter Top'
+    const totalProducts = await page.$$('[class="productinfo text-center"] ')
+    const products = page.locator('[class="productinfo text-center"] ')
+    // wait till all products to get load completely
+    await page.waitForLoadState('networkidle')
+    await page.locator('[class="productinfo text-center"] p').first().waitFor();
+    // catch all available products name and log
+    const productNames = await page.locator('[class="productinfo text-center"] p').allTextContents()
+    console.log(productNames)
+    const count = await products.count()
+    for(let i=0; i<count; ++i){
+        if(await products.nth(i).locator("p").textContent()=== productToBuy){
+            await products.nth(i).locator('text=Add to cart').click()
+            break;
+        }
+    }
+    // only catch products under 500 RS
+    for ( const product of totalProducts){
+        const priceEl = await product.$('h2')
+        const priceText =await priceEl.innerText()
+        const price = parseFloat(priceText.replace('Rs.','').trim())
+
+        if(!isNaN(price)&& price<500) {
+            //const productElement = await productNames()
+            const nameEl = await product.$('p')
+            const name = nameEl ? await nameEl.innerText() : 'Unnamed product';
+            console.log(`Product Name: ${name}, Price RS: ${price}`)
+      }       
+    }
+
+
+
+
+
     //await page.pause()
 
 })
