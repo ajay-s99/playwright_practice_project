@@ -1,24 +1,9 @@
 const { test, expect } = require('@playwright/test');
  
-test('@Web Client App login', async ({ page }) => {
-   //js file- Login js, DashboardPage
-   const email = "anshika@gmail.com";
-   const productName = 'zara coat 3';
-   const products = page.locator(".card-body");
-   await page.goto("https://rahulshettyacademy.com/client");
-   await page.locator("#userEmail").fill(email);
-   await page.locator("#userPassword").fill("Iamking@000");
-   await page.locator("[value='Login']").click();
-   await page.waitForLoadState('networkidle');
-   await page.locator(".card-body b").first().waitFor();
-   const titles = await page.locator(".card-body b").allTextContents();
-   console.log(titles); 
- 
-})
 test.only ('Test Automation', async ({ page }) => {
     await page.goto("https://www.automationexercise.com/login");
     await page.locator("[name='name']").fill('ajjuz')
-    await page.locator("[data-qa='signup-email']").fill('Ajjuzxzxzz@yopmail.com')
+    await page.locator("[data-qa='signup-email']").fill('Ajjuz68zzxz@yopmail.com')
     await page.locator("[data-qa='signup-button']").click()
     await page.locator("[type='radio']").first().click()
     console.log(await page.locator("[type='radio']").first().isChecked())
@@ -61,14 +46,16 @@ test.only ('Test Automation', async ({ page }) => {
     }
     // only catch products under 500 RS
     for ( const product of totalProducts){
-        const priceEl = await product.$('h2')
-        const priceText =await priceEl.innerText()
-        const price = parseFloat(priceText.replace('Rs.','').trim())
+        const priceEl = await product.$('h2') //means: look inside this specific product element, not the whole page.
+        const priceText =await priceEl.innerText() //This gets the visible text of the <h2> element.
+        const price = parseFloat(priceText.replace('Rs.','').trim())  // This removes any non-numeric characters (like ₹, Rs., commas) and converts the result to a number.
 
-        if(!isNaN(price)&& price<500) {
-            //const productElement = await productNames()
-            const nameEl = await product.$('p')
-            const name = nameEl ? await nameEl.innerText() : 'Unnamed product';
+        if(!isNaN(price)&& price<500) 
+            //!isNaN(price): Make sure it's actually a number (sometimes bad data might make it NaN)
+            //price < 500: Only go further if the price is less than 500
+            {
+            const nameEl = await product.$('p')  //Now we try to find the name of the product, inside a <p> tag.
+            const name = nameEl ? await nameEl.innerText() : 'Unnamed product'; //if we found a nameEl, grab its text. If not, fall back to 'Unnamed product' to avoid breaking the code.
             console.log(`Product Name: ${name}, Price RS: ${price}`)
       }       
     }
